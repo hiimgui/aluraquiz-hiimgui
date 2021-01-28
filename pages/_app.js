@@ -1,5 +1,11 @@
-import { createGlobalStyle, ThemeProvider } from 'styled-components'
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable react/prop-types */
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import db from '../db.json';
+import Header from '../src/components/MetaTag';
+
 const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
@@ -22,17 +28,21 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     flex-direction: column;
   }
-`
+`;
 
-const theme = db.theme;
+const { theme } = db;
 
 export default function App({ Component, pageProps }) {
   return (
     <>
+      <Header>
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700&display=swap" rel="stylesheet" />
+      </Header>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Component {...pageProps} />
       </ThemeProvider>
     </>
-  )
+  );
 }
